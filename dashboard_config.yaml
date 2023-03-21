@@ -1,0 +1,56 @@
+views:
+  - title: Home
+    cards:
+      - type: entities
+        entities:
+          - entity: button.heatpump_befehl_anzeigen_sensorupdate
+          - entity: sensor.heatpump_verdichterstarts
+        title: Misc
+      - type: entities
+        entities:
+          - entity: sensor.heatpump_aussentemperatur
+          - entity: sensor.heatpump_temperatur_wohnraum
+          - entity: sensor.heatpump_luftfeuchtigkeit_wohnraum
+          - entity: sensor.heatpump_quellentemperatur
+          - entity: sensor.heatpump_warmwassertemperatur
+        title: Umgebungsparameter
+      - type: entities
+        entities:
+          - entity: sensor.heatpump_eco_speicher_soll_temperatur
+          - entity: sensor.heatpump_komfort_speicher_soll_temperatur
+          - entity: sensor.heatpump_speicher_ist_temperatur
+          - entity: sensor.heatpump_speicher_soll_temperatur
+          - entity: input_text.ww_komfort_temp
+          - entity: input_text.ww_eco_temp
+        title: Wasserspeicher
+      - type: entities
+        entities:
+          - entity: sensor.heatpump_cop_wert_gesamt
+          - entity: sensor.heatpump_cop_wert_heizung
+          - entity: sensor.heatpump_cop_wert_warmwasser
+          - entity: sensor.heatpump_stromverbrauch_heizung_heute
+          - entity: sensor.heatpump_stromverbrauch_heizung_total
+          - entity: sensor.heatpump_stromverbrauch_warmwasser_heute
+          - entity: sensor.heatpump_stromverbrauch_warmwasser_total
+          - entity: sensor.heatpump_wm_elektr_heizen_total
+          - entity: sensor.heatpump_wm_elektr_warmwasser_total
+          - entity: sensor.heatpump_wm_heizen_total
+          - entity: sensor.heatpump_wm_heizung_heute
+          - entity: sensor.heatpump_wm_warmwasser_heute
+          - entity: sensor.heatpump_wm_warmwasser_total
+        title: Energie
+      - type: entities
+        entities:
+          - entity: input_text.h_addr
+          - entity: input_text.h_idx
+          - entity: input_text.h_val
+          - entity: button.heatpump_can_befehl_absetzen
+        title: direct CAN access
+      - type: entities
+        entities:
+          - entity: sensor.heatpump_heizungsdruck
+          - entity: sensor.heatpump_rucklauftemperatur_heizung
+          - entity: sensor.heatpump_t_heizkreis_ist
+          - entity: sensor.heatpump_t_heizkreis_soll
+          - entity: sensor.heatpump_volumenstrom
+        title: Heizung
