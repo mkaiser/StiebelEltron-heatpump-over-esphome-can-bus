@@ -1,0 +1,57 @@
+# this file is to configure Home Assistant to work with the ESPHome heatpump CAN sensor
+# 1. copy this file to %HA-CONFIG_ROOT%/packages/heatpump/heatpump.yaml
+# 2. edit %HA-CONFIG_ROOT%/configuration.yaml and include the heatpump.yaml by adding following below "homeassistant:", e.g.:
+#homeassistant:
+#  packages:
+#    heatpump: !include packages/heatpump/heatpump.yaml
+
+input_text:
+  # for setting the warm water comfort temperature
+  ww_komfort_temp:
+    name: Warm water comfort 1/10°C
+    min: 400
+    max: 600
+    pattern: "[0-9]*"
+
+  # for setting the eco water comfort temperature
+  ww_eco_temp:
+    name: Warm water eco 1/10°C
+    min: 400
+    max: 600
+    pattern: "[0-9]*"
+
+  # following 3 input sensors are used to send custom CAN messages to the heatpumps bus
+  h_addr:
+    name: h_addr
+    initial: "3100"
+    min: 4
+    max: 4
+    pattern: "[a-fA-F0-9]"
+
+  h_idx:
+    name: h_idx
+    initial: "0000"
+    min: 4
+    max: 4
+    pattern: "[a-fA-F0-9]"
+
+  h_val:
+    name: h_val
+    initial: "0000"
+    min: 4
+    max: 4
+    pattern: "[a-fA-F0-9]*"
+
+# this script reads the input sensors above and forwards them to the service esp.heatpump
+# assuming, that the ESP sensor is simply named "heatpump" for  service call to esphome.heatpump
+script:
+  sequence:
+    - service: esphome.heatpump
+      data: >-
+        idx: "{{ states("input_text.h_idx")|int(base=16) }}"
+        addr: "{{ states("input_text.h_addr")|int(base=16) }}"
+        val: "{{ states("input_text.h_val")|int(base=16) }}"
+      mode: queued
+      icon: mdi:play
+      max: 5
+      alias: send CAN-message to ESP-home
